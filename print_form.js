@@ -1,12 +1,33 @@
-form_values = function () {
-	final_string = ''
-	current_url = "Page location is: " + window.location.href;
-	final_string += current_url + '\n' + '\n'
-	time_date = new Date();
-	final_string += "Current time is: " + time_date + '\n' + '\n'
+print_form_values = function (includeHidden) {
+	var finalString = ''
+	var currentUrl = "Page location is: " + window.location.href;
+	finalString += currentUrl + '\n' + '\n'
+	var time_date = new Date();
+	finalString += "Current time is: " + time_date + '\n' + '\n'
+	
+	function logElement (element) {
+		finalString += element.value; 
+		if (element.name) {
+			finalString += " " + "(" + element.name + ")"
+		};
+		if (element.type == 'hidden') {
+			finalString += " || ** HIDDEN FIELD **" 
+		};  
+		finalString += '\n';
+	}
+
 	result = document.querySelectorAll('form input, form textarea');
-	result.forEach(function (element) {final_string += element.value; final_string += '\n'; })
-	// it could also print the name of the field (label?) with line break again
-	console.log(final_string);
+	result.forEach(function (element) {
+		if (element.value) {
+			if (includeHidden == true) { 
+				logElement(element);
+			} else {
+				if (element.type !== 'hidden') {
+					logElement(element);
+				}
+			}	
+		} 
+	})
+	console.log(finalString);
 }
-form_values();
+print_form_values(true);
