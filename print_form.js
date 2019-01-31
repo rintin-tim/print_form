@@ -30,4 +30,4 @@ print_form_values = function(includeHidden) {
     })
     console.log(finalString);
 }
-print_form_values(true);
+print_form_values(false);
