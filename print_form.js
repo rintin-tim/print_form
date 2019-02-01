@@ -1,5 +1,3 @@
-
-
 print_inputs = function(includeHidden) {
     var finalString = '';
     var currentUrl = "Page location is: " + window.location.href;
