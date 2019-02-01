@@ -1,20 +1,22 @@
-print_form_values = function(includeHidden) {
-    var finalString = ''
+
+
+print_inputs = function(includeHidden) {
+    var finalString = '';
     var currentUrl = "Page location is: " + window.location.href;
-    finalString += currentUrl + '\n' + '\n'
+    finalString += currentUrl + '\n' + '\n';
     var time_date = new Date();
-    finalString += "Current time is: " + time_date + '\n' + '\n'
+    finalString += "Current time is: " + time_date + '\n' + '\n';
 
     function logElement(element) {
         finalString += element.value;
         if (element.name) {
-            finalString += " " + "(" + element.name + ")"
+            finalString += " " + "(" + element.name + ")";
         };
         if (element.type == 'hidden') {
-            finalString += " || ** HIDDEN FIELD **"
+            finalString += " || ** HIDDEN FIELD **";
         };
         finalString += '\n';
-    }
+    };
 
     result = document.querySelectorAll('form input, form textarea');
     result.forEach(function(element) {
@@ -24,10 +26,21 @@ print_form_values = function(includeHidden) {
             } else {
                 if (element.type !== 'hidden') {
                     logElement(element);
-                }
-            }
-        }
-    })
-    console.log(finalString);
-}
-print_form_values(false);
+                };
+            };
+        };
+    });
+
+    var newWindow = window.open("about:blank");
+    if (newWindow) {
+        var copyCodeIntro = '\n' + "##### To rerun, copy the code below to the console:" + '\n' + '\n';
+        var htmlInput = (finalString + copyCodeIntro).replace(/(?:\r\n|\r|\n)/g, '<br/>'); 
+        var functionString = print_inputs.toString();
+        var jsConsoleString = print_inputs.name + " = " + functionString + ';' + '\n' + print_inputs.name + "(" + includeHidden + ")" + ";";
+        jsEscapedBreakTags = jsConsoleString.replace(/(<br\/>)/g, '&lt;br/&gt;');
+        jsEscapedRegEx = jsEscapedBreakTags.replace(/(<br\\\/>)/g, '&lt;br\\\/&gt;');
+        newWindow.document.write(htmlInput + jsEscapedRegEx);
+        newWindow.stop();        
+    };    
+};
+print_inputs(false);
