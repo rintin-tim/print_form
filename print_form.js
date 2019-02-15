@@ -1,3 +1,5 @@
+
+
 print_inputs = function(includeHidden) {
     var finalString = '';
     var currentUrl = "Page location is: " + window.location.href;
@@ -5,16 +7,17 @@ print_inputs = function(includeHidden) {
     var time_date = new Date();
     finalString += "Current time is: " + time_date + '\n' + '\n';
 
-    function logElement(element) {
-        finalString += element.value;
-        if (element.name) {
-            finalString += " " + "(" + element.name + ")";
-        };
-        if (element.type == 'hidden') {
-            finalString += " || ** HIDDEN FIELD **";
-        };
-        finalString += '\n';
-    };
+    function logElement (element) {
+		
+		if (element.name) {
+			finalString += element.name 
+		};
+		if (element.type == 'hidden') {
+			finalString += " || ** HIDDEN FIELD **" 
+		};  
+		finalString += " ----> " + element.value; 
+		finalString += '\n';
+	}
 
     result = document.querySelectorAll('form input, form textarea');
     result.forEach(function(element) {
