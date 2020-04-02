@@ -19,7 +19,7 @@ print_inputs = function(includeHidden) {
 		finalString += '\n';
 	}
 
-    result = document.querySelectorAll('form input, form textarea');
+    result = document.querySelectorAll('input, textarea');
     result.forEach(function(element) {
         if (element.value) {
             if (includeHidden == true) {
