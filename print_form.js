@@ -34,14 +34,13 @@ print_inputs = function(includeHidden) {
 
     var newWindow = window.open("about:blank");
     if (newWindow) {
-	var downloadHtml = "<a onclick="this.href='data:text/html;charset=UTF-8,'+encodeURIComponent(document.documentElement.outerHTML)" href="#" download="page.html">Download</a><br><br>"    
-        var copyCodeIntro = '\n' + "##### To rerun, copy the code below to the console:" + '\n' + '\n';
+	var copyCodeIntro = '\n' + "##### To rerun, copy the code below to the console:" + '\n' + '\n';
         var htmlOutput = (finalString + copyCodeIntro).replace(/(?:\r\n|\r|\n)/g, '<br/>'); 
         var functionString = print_inputs.toString();
         var jsConsoleString = print_inputs.name + " = " + functionString + ';' + '\n' + print_inputs.name + "(" + includeHidden + ")" + ";";
         jsEscapedBreakTags = jsConsoleString.replace(/(<br\/>)/g, '&lt;br/&gt;');
         jsEscapedRegEx = jsEscapedBreakTags.replace(/(<br\\\/>)/g, '&lt;br\\\/&gt;');
-        newWindow.document.write(downloadHtml + htmlOutput + jsEscapedRegEx);
+        newWindow.document.write(htmlOutput + jsEscapedRegEx);
         newWindow.stop();        
     };    
 };
