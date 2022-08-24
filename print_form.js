@@ -13,7 +13,9 @@ print_inputs = function(includeHidden) {
 		if (element.type == 'hidden') {
 			finalString += " || ** HIDDEN FIELD **" 
 		};  
-		finalString += " ----> " + element.value; 
+			finalString += ` ----> ${element.hasAttribute('aria-checked') ? 
+				`aria-checked: ${element.getAttribute('aria-checked')} value: ${element.value}` : 
+			`value: ${element.value}`}`
 		finalString += '\n';
 	}
 
