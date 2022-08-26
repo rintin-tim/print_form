@@ -6,7 +6,7 @@ const print_inputs = function (includeHidden = false) {
   <html>
     <p>Time: ${new Date()}</p>
     <p>URL: ${window.location.href}</p>
-    <table border=1 cellpadding=3>
+    <table border=1 cellpadding=3">
 	    <tbody>
             <tr>
                 <td>Name</td>
