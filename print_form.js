@@ -2,26 +2,51 @@
 
 const print_inputs = function (includeHidden) {
   let finalString = "";
-  const currentUrl = "Page location is: " + window.location.href;
+  const currentUrl = "Form URL: " + window.location.href;
   finalString += currentUrl + "\n" + "\n";
   const time_date = new Date();
   finalString += "Current time is: " + time_date + "\n" + "\n";
 
+  let htmlTable = `
+  <table border=1>
+	<tbody>
+        <tr>
+            <td>field</td>
+            <td>hidden</td>
+            <td>value</td>
+        </tr>
+    {{table_rows_here}}
+		
+	</tbody>
+    </table>
+  `;
+
   function logElement(element) {
     if (element.name) {
-      finalString += element.name;
+      finalString += `
+    <tr>
+        <td>${element.name}</td>
+        `;
+      //   finalString += element.name;
     }
     if (element.type == "hidden") {
-      finalString += " || ** HIDDEN FIELD **";
+      finalString += `
+        <td>true</td>
+        `;
+      //   finalString += " || ** HIDDEN FIELD **";
+    } else {
+      finalString += `
+        <td>false</td>
+        `;
     }
-    finalString += ` ----> ${
+    finalString += `<td>${
       element.hasAttribute("aria-checked")
         ? `aria-checked: ${element.getAttribute("aria-checked")} value: ${
             element.value
           }`
         : `value: ${element.value}`
-    }`;
-    finalString += "\n";
+    }</td>`;
+    // finalString += "\n";
   }
 
   const result = document.querySelectorAll("input, textarea");
@@ -34,12 +59,15 @@ const print_inputs = function (includeHidden) {
           logElement(element);
         }
       }
+    } else {
     }
   });
 
   let newWindow = window.open("about:blank");
   if (newWindow) {
-    const htmlOutput = finalString.replace(/(?:\r\n|\r|\n)/g, "<br/>");
+    let htmlOutput = htmlTable.replace("{{table_rows_here}}", finalString);
+    // const htmlOutput = finalString.replace(/(?:\r\n|\r|\n)/g, "<br/>");
+
     newWindow.document.write(htmlOutput);
     newWindow.stop();
   }
