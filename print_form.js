@@ -2,23 +2,22 @@
 
 const print_inputs = function (includeHidden) {
   let finalString = "";
-  const currentUrl = "Form URL: " + window.location.href;
-  finalString += currentUrl + "\n" + "\n";
-  const time_date = new Date();
-  finalString += "Current time is: " + time_date + "\n" + "\n";
-
   let htmlTable = `
-  <table border=1>
+  <html>
+  <p>Time: ${new Date()}</p>
+  <p>URL: ${window.location.href}</p>
+  <table border=1 cellpadding=3>
 	<tbody>
         <tr>
-            <td>field</td>
-            <td>hidden</td>
-            <td>value</td>
+            <td>Name</td>
+            <td>Value</td>
+            <td>Hidden</td>
         </tr>
     {{table_rows_here}}
 		
 	</tbody>
     </table>
+    </html>
   `;
 
   function logElement(element) {
@@ -28,7 +27,20 @@ const print_inputs = function (includeHidden) {
         <td>${element.name}</td>
         `;
       //   finalString += element.name;
+    } else {
+      finalString += `
+    <tr>
+        <td></td>
+        `;
     }
+    finalString += `<td>${
+      element.hasAttribute("aria-checked")
+        ? `aria-checked: ${element.getAttribute("aria-checked")} ${
+            element.value
+          }`
+        : `${element.value}`
+    }</td>`;
+    // finalString += "\n";
     if (element.type == "hidden") {
       finalString += `
         <td>true</td>
@@ -39,27 +51,16 @@ const print_inputs = function (includeHidden) {
         <td>false</td>
         `;
     }
-    finalString += `<td>${
-      element.hasAttribute("aria-checked")
-        ? `aria-checked: ${element.getAttribute("aria-checked")} value: ${
-            element.value
-          }`
-        : `value: ${element.value}`
-    }</td>`;
-    // finalString += "\n";
   }
 
   const result = document.querySelectorAll("input, textarea");
   result.forEach(function (element) {
-    if (element.value) {
-      if (includeHidden == true) {
-        logElement(element);
-      } else {
-        if (element.type !== "hidden") {
-          logElement(element);
-        }
-      }
+    if (includeHidden == true) {
+      logElement(element);
     } else {
+      if (element.type !== "hidden") {
+        logElement(element);
+      }
     }
   });
 
