@@ -39,15 +39,9 @@ const print_inputs = function (includeHidden = false) {
   // html row structure (1 per element)
   function logElement(element) {
     if (element.name) {
-      finalString += `
-    <tr>
-        <td>${element.name}</td>
-        `;
+      finalString += `<tr><td>${element.name}</td>`;
     } else {
-      finalString += `
-    <tr>
-        <td></td>
-        `;
+      finalString += `<tr><td></td>`;
     }
     // look for aria-checked (checkbox and radio button selection)
     finalString += `<td>${
@@ -58,12 +52,12 @@ const print_inputs = function (includeHidden = false) {
         : `${element.value}`
     }</td>`;
     if (element.offsetParent === null) {
-      // image courtesy <a href="https://www.flaticon.com/free-icons/eye" title="eye icons">Eye icons created by Freepik - Flaticon</a>
+      // image courtesy: https://www.flaticon.com/free-icons/eye - Eye icons created by Freepik - Flaticon</a>
       finalString += `
       <td><img src="https://i.ibb.co/t8ZV5VD/hidden.png" title="Element hidden" alt="Element hidden"></td>
       `;
     } else {
-      // <a href="https://www.flaticon.com/free-icons/eye" title="eye icons">Eye icons created by torskaya - Flaticon</a>
+      // image courtesy: https://www.flaticon.com/free-icons/eye - Eye icons created by torskaya - Flaticon</a>
       finalString += `
       <td><img src="https://i.ibb.co/r4Vy0Cp/view.png" title="Element visible" alt="Element visible"></td>
         `;
