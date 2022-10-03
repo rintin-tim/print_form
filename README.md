@@ -1,6 +1,6 @@
 # print_form
 
-![](!print-form-banner.png)
+![](/print-form-banner.png)
 
 ## What does print_form do?
 
