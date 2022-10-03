@@ -24,7 +24,7 @@ Testing a long form can be boring. Sometimes you need to fill in lots of unimpor
 ## How to use
 
 1. Enter test data into the web form
-2. `Cut` and `Paste` the `print_form` script into the browser console and press `Enter` (see next section for optional settings). The data entered will be printed to a new browser tab
+2. `Cut` and `Paste` the `print_form` script into the browser console (see next section for optional settings) and press `Enter` to run. The form data entered will be printed to a new browser tab
 3. Submit your web form
 4. Find bugs
 
