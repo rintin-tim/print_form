@@ -84,4 +84,4 @@ const print_inputs = function (includeHidden = false) {
     newWindow.stop();
   }
 };
-print_inputs(true);
+print_inputs();

@@ -1,9 +1,42 @@
 # print_form
-Copies input (and textarea) field values to a new web page along with the time, date and url. 
-This can be useful during form testing when trying to keep a record of the values entered before submission. 
-Hidden form fields can be omitted from the output:  
 
-Omit hidden fields: `print_inputs(false)`
+![](!print-form-banner.png)
 
-Include hidden fields: `print_inputs(true)`
+## What does print_form do?
 
+This script prints your unsubmitted form values into a new browser page - preserving them for review after the form has been submitted.
+
+## Why?
+
+Testing a long form can be boring. Sometimes you need to fill in lots of unimportant data before you can test one or two key values. Sometimes, some of that seemingly "unimportant" data uncovers a bug that needs further investigation. But what data was entered? The form cleared the values after submission, and the data wasn't part of the test!
+
+### Information logged:
+
+- Input name
+- Input value
+- Textarea name
+- Textarea value
+- Aria-checked value
+- Form URL
+- Date and time of print
+- Is field hidden?
+
+## How to use
+
+1. Enter test data into the web form
+2. Before submitting, open the browser console and run the `print_form` script (see next section for optional settings). The data entered will be printed to a new browser tab
+3. Submit your web form
+4. Find bugs
+
+## Optional settings
+
+`print_form` has an optional setting to include data from hidden fields within the form. The script omits hidden fields by default. To include hidden fields change
+`includeHidden = false` to `includeHidden = true`
+
+### Do not include hidden fields:
+
+    const print_inputs = function (includeHidden = false) {
+
+### Include hidden fields:
+
+    const print_inputs = function (includeHidden = true) {
