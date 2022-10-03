@@ -4,7 +4,7 @@
 
 ## What does print_form do?
 
-This script prints your unsubmitted form values into a new browser page - preserving them for review after the form has been submitted.
+Prints unsubmitted form values into a new browser page - preserving them for review even after the form has been submitted.
 
 ## Why?
 
