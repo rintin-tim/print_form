@@ -33,7 +33,7 @@ Testing a long form can be boring. Sometimes you need to fill in lots of unimpor
 `print_form` has an optional setting to include data from hidden fields. Hidden fields are omitted by default. To include hidden fields change
 `includeHidden = false` to `includeHidden = true`
 
-### Do not include hidden fields:
+### Omit hidden fields:
 
     const print_inputs = function (includeHidden = false) {
 
